@@ -1,10 +1,59 @@
-CREATE TABLE PESSOA (
-
-   cpf char(11) not null primary key,
-   nome varchar2(150) not null ,
-   data_nascimento Date,
-   telefone char(9)
+CREATE TABLE PESSOAS (
+   cpf VARCHAR (11) NOT NULL PRIMARY KEY,
+   nome VARCHAR (150) NOT NULL,
+   data_nascimento DATE,
+   telefone VARCHAR(9)
 );
+
+-------------------------------------------------
+
+CREATE TABLE ENTREGADORES(
+    fk_cpf_entregador VARCHAR (11) NOT NULL UNIQUE,
+    idade INTEGER NOT NULL,
+    cnh char (15) NOT NULL,
+    foto BLOB NOT NULL,
+    FOREIGN KEY (fk_cpf_entregador) REFERENCES PESSOAS(cpf)
+);
+
+-------------------------------------------------
+
+CREATE TABLE CLIENTES(
+    fk_cpf_cliente NOT NULL UNIQUE,
+    FOREIGN KEY (fk_cpf_cliente) REFERENCES PESSOAS(cpf)
+);
+
+-------------------------------------------------
+
+CREATE TABLE LOGINS (
+    usuario VARCHAR (20) NOT NULL PRIMARY KEY,
+    senha VARCHAR (20) NOT NULL,
+    fk_cpf_pessoa VARCHAR (11) NOT NULL UNIQUE,
+    FOREIGN KEY (fk_cpf_pessoa) REFERENCES PESSOAS (cpf)
+);
+
+-------------------------------------------------
+
+CREATE SEQUENCE id_tipo_endereco_seq
+    START WITH 1
+    INCREMENT BY 1;
+
+-------------------------------------------------
+
+CREATE TABLE TIPOS_ENDERECO (
+    id_tipo_endereco INTEGER PRIMARY KEY,
+    tipo_endereco VARCHAR(20) NOT NULL
+);
+
+-------------------------------------------------
+
+CREATE OR REPLACE TRIGGER ID_TIPOS_ENDERECO_INCREMENTO
+BEFORE INSERT ON TIPOS_ENDERECO
+FOR EACH ROW
+  WHEN (new.ID_TIPO_ENDERECO IS NULL)
+BEGIN
+  :new.ID_TIPO_ENDERECO := ID_TIPO_ENDERECO_SEQ.NEXTVAL;
+END;
+
 -------------------------------------------------
 
 CREATE TABLE REPASSE (
@@ -31,14 +80,6 @@ CREATE TABLE CONTA_BANCARIA (
 
 ---------------------------------------------------------
 
-CREATE TABLE ENTREGADOR(
-
-    id_entregador char (5) not null primary key,
-    idade char(2) not null,
-    cnh char (15) not null,
-    foto blob
-);
-
 ----------------------------------------------------
 CREATE TABLE ENTREGA(
 
@@ -62,9 +103,3 @@ FOREIGN KEY (cpf) REFERENCES PESSOA (CPF)
 );
 
 -------------------------------------------------
-CREATE TABLE CLIENTE(
-
-    id_cliente char(5) not null primary key
-);
-
---------------------------------------------------------
