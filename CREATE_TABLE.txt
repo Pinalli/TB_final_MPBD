@@ -1,0 +1,63 @@
+CREATE TABLE PESSOA (
+ cpf char(11) not null primary key,
+ nome varchar2(150) not null ,
+ data_nascimento Date,
+ telefone char(9)
+);
+-------------------------------------------------
+
+CREATE TABLE REPASSE (
+id_repasse char(5) not null primary key,
+valor_repasse float not null,
+data_repasse Date not null,
+cpf_entregador char(11),
+conta char(10),
+id_entrega char,
+FOREIGN KEY(cpf_entregador) REFERENCES PESSOA(CPF),
+FOREIGN KEY(conta) REFERENCES PESSOA(CPF)
+FOREIGN KEY(id_entrega) REFERENCES ENTREGA(id_entrega)
+);
+
+---------------------------------------------------------------
+CREATE TABLE CONTA_BANCARIA (
+    id_conta char (5) primary key,
+    num_conta char (10) not null,
+    cod_seg char (10) not null,
+    agencia char (10) not null
+);
+
+---------------------------------------------------------
+
+CREATE TABLE ENTREGADOR(
+    id_entregador char (5) not null primary key,
+    idade char(2) not null,
+    cnh char (15) not null,
+    foto blob
+);
+
+----------------------------------------------------
+CREATE TABLE ENTREGA(
+    id_entrega char(5) not null primary key,
+    data_entrega Date not null,
+    taxa_entrega float null,
+    pedido char not null,
+    cpf_entregador char,
+    foreign key(pedido) references PEDIDO(id_pedido),
+    foreign key(cpf_entregador) references ENTREGADOR(id_entregador)
+);
+------------------------------------------------------
+CREATE TABLE PEDIDO (
+    id_pedido char(5) not null primary key,
+    situacao varchar2(250) not null,
+    valor float not null,
+    data_pedido Date,
+    cpf char(11),
+FOREIGN KEY (cpf) REFERENCES PESSOA (CPF)
+);
+
+-------------------------------------------------
+CREATE TABLE CLIENTE(
+    id_cliente char(5) not null primary key
+);
+
+--------------------------------------------------------
