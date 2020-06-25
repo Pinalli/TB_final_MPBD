@@ -1,0 +1,6 @@
+consultando os itens de um cardápio com as tabelas itens,itenscardapios e categoriaitens.
+
+instrução:
+select p.nome,cat.nome,card.data_cardapio from itens p
+inner join categoriasitens cat on p.id_categoria_item = cat.id_categoria_item
+inner join itenscardapios card on card.data_cardapio='24/06/2020' and card.id_item=p.id_item;

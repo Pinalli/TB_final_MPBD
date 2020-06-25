@@ -1,0 +1,17 @@
+consulta para visualizar pedidos de clientes, bem como os produtos comprados e o endereço
+a ser entregue.
+
+
+
+
+instrução:
+
+select p.nome, e.cidade, e.bairro, ped.valor_total, ped.data_pedido,ped.situacao situacao_pedido, ip.quantidade,ip.valor_unitario, prod.nome,cat.nome
+from clientes cli
+inner join pessoas p on p.cpf=cli.cpf
+inner join enderecos e on e.id_cliente=cli.id_cliente
+inner join pedidos ped on ped.id_cliente=cli.id_cliente
+inner join itenspedidos ip on ip.id_pedido=ped.id_pedido
+inner join itenscardapios ic on ic.id_item_cardapio=ip.id_item_cardapio
+inner join itens prod on prod.id_item=ic.id_item
+inner join categoriasitens cat on cat.id_categoria_item=prod.id_categoria_item;

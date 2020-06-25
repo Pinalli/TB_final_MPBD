@@ -1,0 +1,17 @@
+drop table cartoes cascade constraint;
+drop table categoriasitens  cascade constraint;
+drop table clientes  cascade constraint;
+drop table contasbancarias  cascade constraint;
+drop table enderecos cascade constraint;
+drop table entregadores  cascade constraint;
+drop table entregas  cascade constraint;
+drop table itens  cascade constraint;
+drop table itenscardapios  cascade constraint;
+drop table itenspedidos  cascade constraint;
+drop table logins  cascade constraint;
+drop table pagamentos  cascade constraint;
+drop table pedidos  cascade constraint;
+drop table pessoas  cascade constraint;
+drop table repasses  cascade constraint;
+drop table tiposenderecos  cascade constraint;
+drop table transacoes  cascade constraint;

@@ -1,0 +1,6 @@
+atualizando a data dos pedidos partindo de uma consulta que retorna a data atual do sistema.
+
+instrução
+
+UPDATE pedidos
+   SET data_pedido = ( SELECT CURRENT_DATE from dual);

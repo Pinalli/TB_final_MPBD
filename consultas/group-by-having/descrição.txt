@@ -1,0 +1,7 @@
+consulta para quantidade por categoria. Mostra somente categorias que tem quantidade maior que 2.
+
+instrução:
+
+select count(prod.id_categoria_item)quantidade, cat.nome from itens prod
+inner join categoriasitens cat on prod.id_categoria_item=cat.id_categoria_item
+group by(cat.nome) having count(prod.id_categoria_item) > 2;

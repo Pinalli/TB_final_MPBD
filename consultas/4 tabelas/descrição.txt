@@ -1,0 +1,9 @@
+consulta para verificar os itens de um determinado pedido, retornando o valor unitário e a quantidade
+solicitada pelo ciente.
+
+instrução:
+
+select p.nome Produto,cat.nome Categoria,card.data_cardapio, ip.quantidade,ip.valor_unitario,ip.id_pedido from itens p
+inner join categoriasitens cat on p.id_categoria_item = cat.id_categoria_item
+inner join itenscardapios card on card.data_cardapio='24/06/2020' and card.id_item=p.id_item
+inner join itenspedidos ip on ip.id_item_cardapio=card.id_item_cardapio;

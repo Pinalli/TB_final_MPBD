@@ -1,0 +1,8 @@
+consulta para retornar os usuários com a idade maior que um determinado usuário.
+
+instrução:
+SELECT NOME, DATA_NASCIMENTO
+FROM PESSOAS
+WHERE DATA_NASCIMENTO > (SELECT DATA_NASCIMENTO
+                        FROM PESSOAS 
+                        WHERE NOME = 'Juan Sérgio Renan Castro');
